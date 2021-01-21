@@ -1,4 +1,5 @@
 import defaultStyle from '../../utils/defaultStyle'
+import moment from "moment";
 const invoiceSearchModel = [
   {
     gutter: defaultStyle.gutter,
@@ -82,7 +83,7 @@ const invoiceSearchModel = [
 
 const values = {
   invoiceCodeNo: '',
-  invoiceTime: [],
+  invoiceTime: [moment(new Date()).add(-3, 'months').hour(0).minute(0).second(0), moment(new Date()).hour(23).minute(59).second(59)],
   orderNo: '',
   drawer: '',
   isRed: ''

@@ -105,6 +105,7 @@
                 v-if="isEdit && col.editable && col.type === 'btn'"
                 :type="col.btnType"
                 class="btn"
+                @click="$emit('onClick')"
               >{{col.value}}</a-button>
               <div v-if="!isEdit || !col.editable">{{values[col.value]}}</div>
             </a-form-item>
@@ -126,9 +127,6 @@ export default {
     },
     details: {
       type: Array
-    },
-    title: {
-      type: String
     },
     values: {
       type: Object
