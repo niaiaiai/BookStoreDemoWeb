@@ -82,6 +82,7 @@ const values = {
   title: '',
   author: '',
   isbn: '',
+  publisher: '',
   bookType: -1
 }
 

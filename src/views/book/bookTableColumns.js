@@ -1,39 +1,39 @@
 const columns = [
   {
     title: '标题',
-    dataIndex: 'Title',
+    dataIndex: 'title',
     align: 'center'
   },
   {
     title: '图片',
-    dataIndex: 'Image',
+    dataIndex: 'image',
     scopedSlots: { customRender: 'image' },
     align: 'center'
   },
   {
     title: '作者',
-    dataIndex: 'Author',
+    dataIndex: 'author',
     align: 'center'
   },
   {
     title: 'ISBN',
-    dataIndex: 'ISBN',
+    dataIndex: 'isbn',
     align: 'center'
   },
   {
     title: '出版社',
-    dataIndex: 'Publisher',
+    dataIndex: 'publisher',
     align: 'center'
   },
   {
     title: '类型',
-    dataIndex: 'BookTypeId',
+    dataIndex: 'bookTypeId',
     scopedSlots: { customRender: 'bookType' },
     align: 'center'
   },
   {
     title: '备注',
-    dataIndex: 'Remark',
+    dataIndex: 'remark',
     scopedSlots: { customRender: 'remark' },
     align: 'center'
   }

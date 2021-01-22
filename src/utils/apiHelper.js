@@ -16,6 +16,18 @@ function get(url, params) {
   })
 }
 
+function put(url, data) {
+  return new Promise((resolve, reject) => {
+    instance.put(url, data).then(response => {
+      resolve(response.data)
+    }).catch(error => {
+      reject(error)
+      console.log(error)
+    })
+  })
+}
 export {
-  get
+  instance,
+  get,
+  put
 }

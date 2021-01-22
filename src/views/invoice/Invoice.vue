@@ -3,8 +3,6 @@
     <editable-detail ref="searchForm" :is-edit="true" :details="searchModel" :values="searchValue" @onClick="searchInvoice(0)"></editable-detail>
     <a-table :columns="invoiceColumns" :data-source="invoiceData" :pagination="pagination" @change="onPageChange">
       <div slot="date" slot-scope="text">{{moment(text).format('YYYY-MM-DD HH:mm:ss')}}</div>
-      <div slot="bookType">aaa</div>
-      <a-button slot="remark">编辑</a-button>
     </a-table>
     <a-card title="新增" :bordered="false" style="width: 100%">
       <editable-detail :is-edit="true" :details="addModel" :values="addValue" :onClick="addInvoice"></editable-detail>
@@ -27,7 +25,7 @@ export default {
       searchModel: invoiceSearchModel,
       searchValue: values,
       invoiceColumns: columns,
-      invoiceData: [{}],
+      invoiceData: [],
       pagination: {
         total: 0
       },
