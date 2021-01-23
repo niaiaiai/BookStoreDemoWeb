@@ -38,12 +38,12 @@ export default {
     searchInvoice(pageIndex) {
       const fieldsValue = this.$refs.searchForm.form.getFieldsValue()
       let params = {
-        InvoiceCodeNo: fieldsValue.invoiceCodeNo,
-        Drawer: fieldsValue.drawer,
-        OrderId: fieldsValue.orderNo,
-        IsRed: Number.isInteger(fieldsValue.isRed) ? Boolean(fieldsValue.isRed) : null,
-        PageSize: this.pagination.pageSize,
-        Index: pageIndex
+        invoiceCodeNo: fieldsValue.invoiceCodeNo,
+        drawer: fieldsValue.drawer,
+        orderNo: fieldsValue.orderNo,
+        isRed: Number.isInteger(fieldsValue.isRed) ? Boolean(fieldsValue.isRed) : null,
+        pageSize: this.pagination.pageSize,
+        index: pageIndex
       }
       if((fieldsValue.invoiceTime && fieldsValue.invoiceTime[0])) {
         Object.assign(params, { StartTime: moment(fieldsValue.invoiceTime[0]).format('YYYY-MM-DD HH:mm:ss') })
