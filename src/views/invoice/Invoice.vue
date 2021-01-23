@@ -5,7 +5,7 @@
       <div slot="date" slot-scope="text">{{moment(text).format('YYYY-MM-DD HH:mm:ss')}}</div>
     </a-table>
     <a-card title="新增" :bordered="false" style="width: 100%">
-      <editable-detail :is-edit="true" :details="addModel" :values="addValue" :onClick="addInvoice"></editable-detail>
+      <editable-detail ref="addForm" :is-edit="true" :details="addModel" :values="addValue" @onClick="addInvoice"></editable-detail>
     </a-card>
   </div>
 </template>
@@ -16,7 +16,7 @@ import EditableDetail from '../../components/EditableDetail.vue'
 import { invoiceSearchModel, values } from './invoiceSearchModel'
 import columns from './invoiceTableColumns'
 import { invoiceAddModel, addValues } from './invoiceAddModel'
-import { get } from '../../utils/apiHelper'
+import { get, post } from '../../utils/apiHelper'
 export default {
   name: 'invoice',
   components: { EditableDetail },
@@ -62,7 +62,26 @@ export default {
       })
     },
     addInvoice() {
-      console.log('add')
+      const fieldsValue = this.$refs.addForm.form.getFieldsValue()
+      const data = {
+        orderNo: fieldsValue.orderNo,
+        invoiceCode: fieldsValue.invoiceCode,
+        invoiceNo: fieldsValue.invoiceNo,
+        drawer: fieldsValue.drawer,
+        remark: fieldsValue.remark
+      }
+      post('invoice', data).then(res => {
+        this.$notification.success({
+          message: '新增成功'
+        })
+        this.$refs.addForm.form.resetFields()
+        this.searchInvoice(0)
+      }).catch(err => {
+        this.$notification.error({
+          message: '新增失败',
+          description: err.message
+        });
+      })
     },
     onPageChange(pagination) {
       this.searchInvoice(pagination.current - 1)

@@ -2,16 +2,14 @@
   <div>
     <editable-detail ref="searchForm" :is-edit="true" :details="searchModel" :values="searchValue" @onClick="searchPrice(0)"></editable-detail>
     <a-table :columns="priceColumns" :data-source="priceData" :pagination="pagination" rowKey="Id" @change="onPageChange">
-      <div slot="image">aaa</div>
       <div slot="bookType" slot-scope="text">
         <span v-if="text === 1">计算机</span>
         <span v-if="text === 2">漫画</span>
         <span v-if="text === 3">人际关系</span>
       </div>
-      <a-button slot="remark">编辑</a-button>
     </a-table>
     <a-card title="新增" :bordered="false" style="width: 100%">
-      <editable-detail :is-edit="true" :details="addModel" :values="addValue"></editable-detail>
+      <editable-detail ref="addForm" :is-edit="true" :details="addModel" :values="addValue" @onClick="addPrice"></editable-detail>
     </a-card>
   </div>
 </template>
@@ -21,7 +19,7 @@ import EditableDetail from '../../components/EditableDetail.vue'
 import { priceSearchModel, values } from './priceSearchModel'
 import { priceAddModel, addValues } from './priceAddModel'
 import columns from './priceTableColumns'
-import { get } from '../../utils/apiHelper'
+import { get, post } from '../../utils/apiHelper'
 export default {
   name: 'price',
   components: { EditableDetail },
@@ -62,6 +60,26 @@ export default {
     },
     onPageChange(pagination) {
       this.searchPrice(pagination.current - 1)
+    },
+    addPrice() {
+      const fieldsValue = this.$refs.addForm.form.getFieldsValue()
+      const data = {
+        bookISBN: fieldsValue.bookIsbn,
+        price: fieldsValue.price,
+        remark: fieldsValue.remark
+      }
+      post('price', data).then(res => {
+        this.$notification.success({
+          message: '新增成功'
+        });
+        this.searchPrice(0)
+        this.$refs.addForm.form.resetFields()
+      }).catch(err => {
+        this.$notification.error({
+          message: '新增失败',
+          description: err.message
+        });
+      })
     }
   },
   mounted() {

@@ -26,8 +26,21 @@ function put(url, data) {
     })
   })
 }
+
+function post(url, data) {
+  return new Promise((resolve, reject) => {
+    instance.post(url, data).then(response => {
+      resolve(response.data)
+    }).catch(error => {
+      reject(error)
+      console.log(error)
+    })
+  })
+}
+
 export {
   instance,
   get,
-  put
+  put,
+  post
 }

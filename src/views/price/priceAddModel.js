@@ -7,22 +7,12 @@ const priceAddModel = [
         formItemLayout: defaultStyle.defaultLayout,
         md: defaultStyle.md,
         sm: defaultStyle.sm,
-        label: '图书',
-        value: 'bookAutoSearch',
-        onSearch: (searchText) => {
-          clearTimeout(timer)
-          timer = setTimeout(() => {
-            console.log(searchText)
-          }, 2000)
-        },
-        onSelect: (value) => {
-          console.log(value)
-        },
-        dataSource: bookAutoSearchData,
+        label: '图书isbn',
+        value: 'bookIsbn',
         rules: [
-          { required: true, message: '请输入图书', trigger: 'blur' }
+          { required: true, message: '请输入图书', trigger: 'blur', whitespace: true }
         ],
-        type: 'auto',
+        type: 'input',
         editable: true
       },
       {
@@ -34,7 +24,7 @@ const priceAddModel = [
         min: 0,
         initialValue: '',
         rules: [
-          { required: true, message: '请输入价格', trigger: 'blur' }
+          { required: true, message: '请输入价格', trigger: 'blur', type: 'number' }
         ],
         type: 'number',
         editable: true
@@ -65,13 +55,11 @@ const priceAddModel = [
 ]
 
 const addValues = {
-  bookAutoSearch: '',
+  bookIsbn: '',
   price: 0,
   remark: ''
 }
 
-let bookAutoSearchData = ['123']
-let timer = null
 
 export {
   priceAddModel,

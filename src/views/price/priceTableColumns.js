@@ -17,7 +17,6 @@ const columns = [
   {
     title: '备注',
     dataIndex: 'remark',
-    scopedSlots: { customRender: 'remark' },
     align: 'center'
   }
 ]

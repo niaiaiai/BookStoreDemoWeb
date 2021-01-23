@@ -8,21 +8,11 @@ const invoiceAddModel = [
         md: defaultStyle.md,
         sm: defaultStyle.sm,
         label: '订单号',
-        value: 'orderAutoSearch',
-        onSearch: (searchText) => {
-          clearTimeout(timer)
-          timer = setTimeout(() => {
-            console.log(searchText)
-          }, 2000)
-        },
-        onSelect: (value) => {
-          console.log(value)
-        },
-        dataSource: orderAutoSearchData,
+        value: 'orderNo',
         rules: [
-          { required: true, message: '请输入图书', trigger: 'blur' }
+          { required: true, message: '请输入订单号', trigger: 'blur', whitespace: true }
         ],
-        type: 'auto',
+        type: 'input',
         editable: true
       },
       {
@@ -32,7 +22,7 @@ const invoiceAddModel = [
         label: '发票代码',
         value: 'invoiceCode',
         rules: [
-          { required: true, message: '请输入发票代码', trigger: 'blur' }
+          { required: true, message: '请输入发票代码', trigger: 'blur', whitespace: true }
         ],
         type: 'input',
         editable: true
@@ -44,7 +34,7 @@ const invoiceAddModel = [
         label: '发票号码',
         value: 'invoiceNo',
         rules: [
-          { required: true, message: '请输入发票号码', trigger: 'blur' }
+          { required: true, message: '请输入发票号码', trigger: 'blur', whitespace: true }
         ],
         type: 'input',
         editable: true
@@ -56,7 +46,7 @@ const invoiceAddModel = [
         label: '开票人',
         value: 'drawer',
         rules: [
-          { required: true, message: '请输入开票人', trigger: 'blur' }
+          { required: true, message: '请输入开票人', trigger: 'blur', whitespace: true }
         ],
         type: 'input',
         editable: true
@@ -95,15 +85,12 @@ const invoiceAddModel = [
 ]
 
 const addValues = {
-  orderAutoSearch: '',
+  orderNo: '',
   invoiceCode: '',
   invoiceNo: '',
   drawer: '',
   remark: ''
 }
-
-let orderAutoSearchData = ['123']
-let timer = null
 
 export {
   invoiceAddModel,

@@ -17,7 +17,7 @@ const columns = [
   },
   {
     title: '订单号',
-    dataIndex: 'orderId',
+    dataIndex: 'orderNo',
     align: 'center'
   },
   {
