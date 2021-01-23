@@ -69,7 +69,6 @@ export default {
     }
   },
   mounted() {
-    this.pagination.pageSize = 2
     this.searchInvoice(0)
   }
 }

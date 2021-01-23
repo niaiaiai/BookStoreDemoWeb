@@ -1,17 +1,19 @@
 const columns = [
     {
       title: '订单号',
-      dataIndex: 'OrderNo',
+      dataIndex: 'orderNo',
       align: 'center'
     },
     {
       title: '订单时间',
-      dataIndex: 'OrderDate',
+      dataIndex: 'orderDate',
+      scopedSlots: { customRender: 'date' },
       align: 'center'
     },
     {
       title: '需要发票',
-      dataIndex: 'NeedInvoice',
+      dataIndex: 'needInvoice',
+      scopedSlots: { customRender: 'invoice' },
       align: 'center'
     },
     {

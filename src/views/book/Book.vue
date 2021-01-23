@@ -142,7 +142,6 @@ export default {
     }
   },
   mounted() {
-    this.pagination.pageSize = 3
     this.searchBook(0)
   }
 }

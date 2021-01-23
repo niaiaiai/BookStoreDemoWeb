@@ -1,22 +1,22 @@
 const columns = [
   {
     title: '标题',
-    dataIndex: 'BookTitle',
+    dataIndex: 'bookTitle',
     align: 'center'
   },
   {
     title: 'ISBN',
-    dataIndex: 'ISBN',
+    dataIndex: 'isbn',
     align: 'center'
   },
   {
     title: '价格',
-    dataIndex: 'Price',
+    dataIndex: 'price',
     align: 'center'
   },
   {
     title: '备注',
-    dataIndex: 'Remark',
+    dataIndex: 'remark',
     scopedSlots: { customRender: 'remark' },
     align: 'center'
   }

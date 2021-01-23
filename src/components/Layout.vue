@@ -27,9 +27,6 @@
           <router-view />
         </div>
       </a-layout-content>
-      <a-layout-footer style="textAlign: center">
-        Ant Design ©2018 Created by Ant UED
-      </a-layout-footer>
     </a-layout>
   </a-layout>
 </template>

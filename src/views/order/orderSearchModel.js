@@ -1,4 +1,5 @@
 import defaultStyle from '../../utils/defaultStyle'
+import moment from "moment";
 const orderSearchModel = [
     {
         gutter: defaultStyle.gutter,
@@ -35,7 +36,7 @@ const orderSearchModel = [
                 rules: [],
                 type: 'select',
                 options: [
-                    { title: '', value: '' },
+                    { title: '全部', value: '' },
                     { title: '是', value: 1 },
                     { title: '否', value: 0 }
                 ],
@@ -57,7 +58,7 @@ const orderSearchModel = [
 
 const values = {
     orderNo: '',
-    orderTime: [],
+    orderTime: [moment(new Date()).add(-3, 'months').hour(0).minute(0).second(0), moment(new Date()).hour(23).minute(59).second(59)],
     needInvoice: ''
 }
 

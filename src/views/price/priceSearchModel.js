@@ -18,17 +18,6 @@ const priceSearchModel = [
         formItemLayout: defaultStyle.defaultLayout,
         md: defaultStyle.md,
         sm: defaultStyle.sm,
-        label: '作者',
-        value: 'author',
-        initialValue: '',
-        rules: [],
-        type: 'input',
-        editable: true
-      },
-      {
-        formItemLayout: defaultStyle.defaultLayout,
-        md: defaultStyle.md,
-        sm: defaultStyle.sm,
         label: 'ISBN',
         value: 'isbn',
         initialValue: '',
@@ -36,22 +25,6 @@ const priceSearchModel = [
         type: 'input',
         editable: true
       },
-      {
-        formItemLayout: defaultStyle.defaultLayout,
-        md: defaultStyle.md,
-        sm: defaultStyle.sm,
-        label: '出版社',
-        value: 'publisher',
-        initialValue: '',
-        rules: [],
-        type: 'input',
-        editable: true
-      }
-    ]
-  },
-  {
-    gutter: defaultStyle.gutter,
-    details: [
       {
         formItemLayout: defaultStyle.defaultLayout,
         md: defaultStyle.md,
@@ -80,7 +53,6 @@ const priceSearchModel = [
 
 const values = {
   title: '',
-  author: '',
   isbn: '',
   bookType: -1
 }
