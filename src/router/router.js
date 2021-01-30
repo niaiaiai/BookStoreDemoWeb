@@ -25,6 +25,16 @@ var routes = [
                 component: () => import('../views/invoice/Invoice'),
             },
         ]
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('../views/Login.vue'),
+    },
+    {
+        path: '/signin',
+        name: 'signin',
+        component: () => import('../views/Signin.vue'),
     }
 ]
 export default routes

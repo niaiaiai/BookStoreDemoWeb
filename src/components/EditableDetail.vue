@@ -101,6 +101,23 @@
                 }
                 ]"
               />
+              <a-input-password
+                :placeholder="col.placeholder"
+                v-if="isEdit && col.editable && col.type === 'password'"
+                v-decorator="[
+                col.value,
+                {
+                  initialValue: values[col.value],
+                  rules: [...col.rules, { validator: (rule, value, callback) => {
+                    if (col.value === 'confirmPassword' && value && value !== form.getFieldValue('password')) {
+                      callback('Two passwords that you enter is inconsistent!');
+                    } else {
+                      callback();
+                    }
+                  } }]
+                }
+                ]"
+              />
               <a-button
                 v-if="isEdit && col.editable && col.type === 'btn'"
                 :type="col.btnType"

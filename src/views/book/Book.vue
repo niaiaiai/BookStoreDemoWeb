@@ -42,7 +42,7 @@
 import EditableDetail from '../../components/EditableDetail.vue'
 import { bookSearchModel, values } from './bookSearchModel'
 import columns from './bookTableColumns'
-import { get, instance, put } from '../../utils/apiHelper'
+import { get, put } from '../../utils/apiHelper'
 import { getBase64URL } from '../../utils/image'
 export default {
   name: 'book',
@@ -56,7 +56,6 @@ export default {
       pagination: {
         total: 0
       },
-      baseURL: instance.defaults.baseURL,
       uploadImageBookId: '',
       editRemarkVisible: false,
       tempRemarkValue: '',
