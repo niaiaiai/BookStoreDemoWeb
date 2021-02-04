@@ -10,7 +10,15 @@
             <span v-else>无需发票</span>
           </div>
           <div slot="status">aaa</div>
-          <a-button slot="action">查看</a-button>
+          <div slot="action" slot-scope="record">
+            <a-button v-if="tabKey === 'all'">查看</a-button>
+            <div v-else-if="tabKey === 'deliver'">
+              <a-button style="margin-right: 10px" type="primary" ghost>发货</a-button>
+              <a-button type="danger" ghost @click="showCloseOrder(record.id)">关闭</a-button>
+            </div>
+            <a-button type="danger" ghost v-else-if="tabKey === 'done'" @click="showCloseOrder(record.id)">关闭</a-button>
+            <a-button v-else>查看</a-button>
+          </div>
         </a-table>
       </a-tab-pane>
     </a-tabs>
@@ -21,8 +29,8 @@
 import moment from "moment";
 import EditableDetail from '../../components/EditableDetail.vue'
 import { orderSearchModel, values } from './orderSearchModel'
-import columns from './orderTableColumns'
-import { get } from '../../utils/apiHelper'
+import { columns, orderStatus } from './orderTableColumns'
+import { get, post } from '../../utils/apiHelper'
 export default {
   name: 'order',
   components: { EditableDetail },
@@ -31,7 +39,7 @@ export default {
       searchModel: orderSearchModel,
       searchValue: values,
       orderColumns: columns,
-      orderData: [],
+      orderData: [{}],
       orderTabs: [
         { key: 'all', tab: '全部' },
         { key: 'deliver', tab: '待发货' },
@@ -42,7 +50,7 @@ export default {
         total: 0
       },
       moment: moment,
-      tabKey: 'all'
+      tabKey: 'all',
     }
   },
   methods: {
@@ -84,11 +92,54 @@ export default {
     tabChange(activeKey) {
       this.tabKey = activeKey
       switch(this.tabKey) {
-        case 'all': this.searchOrder(0); break
-        case 'deliver': this.searchOrder(0, false, undefined, false); break
-        case 'done': this.searchOrder(0, true, false, false); break
-        case 'close': this.searchOrder(0, undefined, undefined, true); break
+        case 'all': 
+          this.searchOrder(0); 
+          if(this.orderColumns.length === 4) {
+            this.orderColumns.splice(3, 0, orderStatus);
+          }
+          break
+        case 'deliver': 
+          this.searchOrder(0, false, undefined, false); 
+          if(this.orderColumns.length === 5) {
+            this.orderColumns.splice(3, 1); 
+          }
+          break
+        case 'done': 
+          this.searchOrder(0, true, false, false); 
+          if(this.orderColumns.length === 5) {
+            this.orderColumns.splice(3, 1); 
+          }
+          break
+        case 'close': 
+          this.searchOrder(0, undefined, undefined, true); 
+          if(this.orderColumns.length === 5) {
+            this.orderColumns.splice(3, 1); 
+          }
+          break
       }
+    },
+    showCloseOrder(orderId) {
+      const that = this
+      this.$confirm({
+        title: '是否关闭此订单?',
+        onOk() {
+          post(`order/close/${orderId}`).then(res => {
+            that.$notification.success({
+              message: '操作成功'
+            })
+            this.tabKey = 'all'
+            that.searchOrder(0)
+          }).catch(err => {
+            that.$notification.error({
+              message: '操作失败，请重试',
+              description: err.message
+            })
+          })
+        },
+        onCancel() {
+          console.log('Cancel');
+        }
+      })
     }
   },
   mounted() {

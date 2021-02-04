@@ -27,4 +27,13 @@ const columns = [
       scopedSlots: { customRender: 'action' }
     },
   ]
-export default columns
+
+const orderStatus = {
+  title: '订单状态',
+  align: 'center',
+  scopedSlots: { customRender: 'status' }
+}
+export {
+  columns,
+  orderStatus
+}
