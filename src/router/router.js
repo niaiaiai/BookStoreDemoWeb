@@ -43,6 +43,7 @@ var routes = [
 Vue.use(VueRouter)
 const router = new VueRouter({
     mode: 'history',
+    // base: '/web/',
     routes // (缩写) 相当于 routes: routes
   })
 export default router
